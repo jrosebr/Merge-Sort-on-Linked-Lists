@@ -4,6 +4,16 @@ public class Node {
 
 	public Node(int d, Node n) { data = d; next = n; }
 
+	public int getData()
+	{
+		return this.data;
+	}
+
+	public Node getNext()
+	{
+		return this.next;
+	}
+
 	public String toString() {
 		if (next != null)
 			return Integer.toString(data) + ", " + next.toString();
