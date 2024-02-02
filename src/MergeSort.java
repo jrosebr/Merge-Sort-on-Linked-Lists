@@ -8,7 +8,25 @@ public class MergeSort {
     static Node merge(Node A, Node B) {
 
         LinkedList<Node> return_list = new LinkedList<>();
+        ArrayList<Node> a_node_list = new ArrayList<>();
+        ArrayList<Integer> a_data_list = new ArrayList<>();
 
+        ArrayList<Node> b_node_list = new ArrayList<>();
+        ArrayList<Integer> b_data_list = new ArrayList<>();
+
+        Node a = A;
+        Node b = B;
+
+        while (a != null)
+        {
+            a_node_list.add(a);
+            a_data_list.add(a.getData());
+        }
+
+        while (b != null)
+        {
+
+        }
 
         return return_list.getFirst();
     }
@@ -28,7 +46,6 @@ public class MergeSort {
             node_list.add(n);
             n = n.getNext();
         }
-
 
 
         System.out.println(N);
