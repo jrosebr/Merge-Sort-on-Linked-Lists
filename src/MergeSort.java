@@ -1,8 +1,8 @@
 public class MergeSort {
 
     static Node merge(Node A, Node B) {
-        // YOUR CODE GOES HERE
-        return null;  // DELETE THIS LINE
+        
+
     }
 
     static Node sort(Node N) {
