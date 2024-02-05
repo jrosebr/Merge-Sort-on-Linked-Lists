@@ -100,6 +100,7 @@ public class MergeSortTest {
         Node n1 = new Node(1, new Node(2, new Node(4, new Node(5, null))));
         Node n2 = new Node(0, new Node(5, new Node(6, new Node(7, null))));
 
+
         Node sorted_Node = MergeSort.merge_in_place(n1, n2);
 
         assertEquals("0, 1, 2, 4, 5, 5, 6, 7", sorted_Node.toString());
