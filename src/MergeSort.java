@@ -7,63 +7,166 @@ public class MergeSort {
 
     static Node merge(Node A, Node B) {
 
-        LinkedList<Node> return_list = new LinkedList<>();
-        ArrayList<Node> a_node_list = new ArrayList<>();
-        ArrayList<Integer> a_data_list = new ArrayList<>();
+        if (A == null) return B;
+        if (B == null) return A;
 
-        ArrayList<Node> b_node_list = new ArrayList<>();
-        ArrayList<Integer> b_data_list = new ArrayList<>();
+        Node result_Node;
+        Node current_Node;
 
-        Node a = A;
-        Node b = B;
-
-        while (a != null)
+        if (A.data <= B.data)
         {
-            a_node_list.add(a);
-            a_data_list.add(a.getData());
+            result_Node = new Node (A.data, null);
+            current_Node = result_Node;
+            A = A.next;
         }
 
-        while (b != null)
+        else
         {
-
+            result_Node = new Node(B.data, null);
+            current_Node = result_Node;
+            B = B.next;
         }
 
-        return return_list.getFirst();
+        while (A != null && B != null)
+        {
+            if (A.data <= B.data)
+            {
+                current_Node.next = new Node(A.data, null);
+                A = A.next;
+            }
+
+            else
+            {
+                current_Node.next = new Node(B.data, null);
+                B = B.next;
+            }
+
+            current_Node = current_Node.next;
+        }
+
+            if (A != null)
+            {
+                current_Node.next = A;
+            }
+
+            else
+            {
+                current_Node.next = B;
+            }
+
+            return result_Node;
     }
 
-    static Node sort(Node N) {
-
-        ArrayList<Integer> data_list = new ArrayList<>();
-        ArrayList<Node> node_list = new ArrayList<>();
-        LinkedList<Node> final_list = new LinkedList<>();
-
-        Node n = N;
-
-        //Creates an ArrayList of the values of nodes
-        while (n != null)
+    static Node sort(Node N)
+    {
+        if (N == null || N.next == null)
         {
-            data_list.add(n.getData());
-            node_list.add(n);
-            n = n.getNext();
+            return N;
         }
 
+        Node placeholder = nodeCopy(N);
 
-        System.out.println(N);
-        System.out.println(n);
-        System.out.println(data_list);
-        System.out.println(node_list);
+        Node[] halves = split(placeholder);
+        Node left = sort(halves[0]);
+        Node right = sort(halves[1]);
 
-        return null;
+        return merge(left, right);
     }
+
+    private static Node nodeCopy (Node N)
+    {
+        Node dummy = new Node(0, null);
+        Node current = dummy;
+        Node originalCurrent = N;
+
+        while (originalCurrent != null)
+        {
+            current.next = new Node(originalCurrent.data, null);
+            current = current.next;
+            originalCurrent = originalCurrent.next;
+        }
+
+        return dummy.next;
+    }
+
 
     static Node merge_in_place(Node A, Node B) {
-        // YOUR CODE GOES HERE
-        return null;  // DELETE THIS LINE
+
+        if (A == null) return B;
+        if (B == null) return A;
+
+        Node result_node;
+
+        if (A.data <= B.data)
+        {
+            result_node = A;
+            A = A.next;
+        }
+
+        else
+        {
+            result_node = B;
+            B = B.next;
+        }
+
+        Node current_Node = result_node;
+
+        while (A != null && B != null)
+        {
+            if (A.data <= B.data)
+            {
+                current_Node.next = A;
+                A = A.next;
+            }
+
+            else
+            {
+                current_Node.next = B;
+                B = B.next;
+            }
+            current_Node = current_Node.next;
+        }
+
+        if (A != null)
+        {
+            current_Node.next = A;
+        }
+
+        else
+        {
+            current_Node.next = B;
+        }
+
+        return result_node;
+    }
+
+    private static Node[] split(Node N) {
+        Node slow = N;
+        Node fast = N.next;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        Node left = N;
+        Node right = slow.next;
+        slow.next = null;
+
+        return new Node[]{left, right};
     }
 
     static Node sort_in_place(Node N) {
-        // YOUR CODE GOES HERE
-        return null;  // DELETE THIS LINE
+        if (N == null || N.next == null)
+        {
+            return N;
+        }
+
+        Node[] halves = split(N);
+        Node left = sort_in_place(halves[0]);
+        Node right = sort_in_place(halves[1]);
+
+        return merge_in_place(left, right);
     }
 
 }

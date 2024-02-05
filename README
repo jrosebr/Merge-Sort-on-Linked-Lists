@@ -1,3 +1,11 @@
 Merge Sort on Linked Lists Student Support Code
 
+<<<<<<< Updated upstream
 [Question 1] What is the time and space complexity of your merge() function?
+=======
+Question 1: What is the time and space complexity of your merge() function?
+
+The time complexity is O(n) because my while loop iterates through both lists until one of them is empty. So 
+
+Revision: Fall 2023
+>>>>>>> Stashed changes
