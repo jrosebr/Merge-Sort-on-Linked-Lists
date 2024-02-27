@@ -2,8 +2,8 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Random;
 
-import com.sun.scenario.effect.Merge;
 import org.junit.jupiter.api.Test;
+
 
 import static java.util.Collections.sort;
 import static org.junit.jupiter.api.Assertions.*;
@@ -57,6 +57,50 @@ public class MergeSortTest {
         assertEquals("0, 1", sort_list.toString());
         assertEquals(sort_list.toString(), singleNode1.toString());
         assertEquals("1", singleNode2.toString());
+    }
+
+    @Test
+    public void empty_sort_test()
+    {
+        int[] A = {};
+        Node a = Utils.array_to_list(A);
+
+        Node ans = MergeSort.sort(a);
+        assertTrue(Utils.is_sorted(ans));
+    }
+
+    @Test
+    public void empty_merge_test()
+    {
+        int[] A = {};
+        int[] B = {};
+        Node a = Utils.array_to_list(A);
+        Node b = Utils.array_to_list(B);
+
+        Node ans = MergeSort.merge(a, b);
+        assertTrue(Utils.is_sorted(ans));
+    }
+
+    @Test
+    public void empty_sort_in_place_test()
+    {
+        int[] A = {};
+        Node a = Utils.array_to_list(A);
+
+        Node ans = MergeSort.sort_in_place(a);
+        assertTrue(Utils.is_sorted(ans));
+    }
+
+    @Test
+    public void empty_merge_in_place_test()
+    {
+        int[] A = {};
+        int[] B = {};
+        Node a = Utils.array_to_list(A);
+        Node b = Utils.array_to_list(B);
+
+        Node ans = MergeSort.merge_in_place(a, b);
+        assertTrue(Utils.is_sorted(ans));
     }
 
     @Test
@@ -166,5 +210,24 @@ public class MergeSortTest {
             assertTrue(Utils.is_sorted(original_Node));
             assertEquals(starter_Node.toString(), starter_Copy.toString());
         }
+    }
+
+    @Test
+    public void test()
+    {
+        sort_singlelist();
+        sort_in_place_singlelist();
+        merge_singlelist();
+        merge_in_place_singlelist();
+        normal_sort_test();
+        normal_sort_in_place_test();
+        normal_merge_test();
+        normal_merge_in_place_test();
+        random_sort_test();
+        random_sort_in_place_test();
+        empty_sort_test();
+        empty_merge_test();
+        empty_sort_in_place_test();
+        empty_merge_in_place_test();
     }
 }
